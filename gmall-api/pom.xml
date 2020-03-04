@@ -33,6 +33,19 @@
             <!--可选依赖，只是为了防止工程mp的注解报错问题-->
             <!--<optional>true</optional>-->
         </dependency>
+        <!-- 引入 sharding-jdbc 依赖：管理多数据源，轻量级数据库驱动 -->
+        <dependency>
+            <groupId>io.shardingjdbc</groupId>
+            <artifactId>sharding-jdbc-core</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <!-- 引入 logback 整合 logstash 的第三方 jar 包 -->
+        <!-- https://mvnrepository.com/artifact/net.logstash.logback/logstash-logback-encoder -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>5.3</version>
+        </dependency>
     </dependencies>
 
 

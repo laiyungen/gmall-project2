@@ -1,10 +1,11 @@
 package com.atguigu.gmall.sms.service.impl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.atguigu.gmall.sms.entity.CouponProductRelation;
 import com.atguigu.gmall.sms.mapper.CouponProductRelationMapper;
 import com.atguigu.gmall.sms.service.CouponProductRelationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * <p>
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-03-03
  */
 @Service
+@Component
 public class CouponProductRelationServiceImpl extends ServiceImpl<CouponProductRelationMapper, CouponProductRelation> implements CouponProductRelationService {
 
 }

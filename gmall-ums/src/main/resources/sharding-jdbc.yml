@@ -1,0 +1,25 @@
+# 配置多数据源
+dataSources:
+  # 配置 master 数据源
+  db_master: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.88.130:3306/gmall_ums?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+  # 配置 slave 数据源
+  db_slave: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.88.130:3316/gmall_ums?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+# 配置主从的规则
+masterSlaveRule:
+  # 规则的名字
+  name: db_ms
+  # 主数据源的名字
+  masterDataSourceName: db_master
+  # 从数据源的名字(数组可配多个逗号隔开)
+  slaveDataSourceNames: [db_slave]
+
+###注意，这份文档直接从官网复制的。!!后面是DataSource的实现类全类名不能省略。
+###多个slave加多份db_slaveXX配置即可，在slaveDataSourceNames列举这些slaver
