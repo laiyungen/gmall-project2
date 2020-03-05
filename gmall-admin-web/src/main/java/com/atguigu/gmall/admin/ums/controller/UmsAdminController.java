@@ -73,23 +73,7 @@ public class UmsAdminController {
     public Object register(@Valid @RequestBody UmsAdminParam umsAdminParam,BindingResult result) {
         Admin admin = null;
 
-        //TODO 完成注册功能
-//        int errorCount = result.getErrorCount();
-//        if(errorCount>0){
-//            List<FieldError> fieldErrors = result.getFieldErrors();
-//            fieldErrors.forEach((fieldError)->{
-//                String field = fieldError.getField();
-//                log.debug("属性：{}，传来的值是：{}，校验出错。出错的提示消息：{}",
-//                        field,fieldError.getRejectedValue(),fieldError.getDefaultMessage());
-//            });
-//
-//
-//            return new CommonResult().validateFailed(result);
-//        }else {
-//
-//        }
         log.debug("需要注册的用户详情：{}",umsAdminParam);
-        int i = 10/0;
         return new CommonResult().success(admin);
     }
 

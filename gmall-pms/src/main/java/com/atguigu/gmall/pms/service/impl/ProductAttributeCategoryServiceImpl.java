@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.atguigu.gmall.pms.entity.ProductAttributeCategory;
 import com.atguigu.gmall.pms.mapper.ProductAttributeCategoryMapper;
 import com.atguigu.gmall.pms.service.ProductAttributeCategoryService;
+import com.atguigu.gmall.vo.PageInfoVo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Component;
 
@@ -19,4 +20,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductAttributeCategoryServiceImpl extends ServiceImpl<ProductAttributeCategoryMapper, ProductAttributeCategory> implements ProductAttributeCategoryService {
 
+    @Override
+    public PageInfoVo roductAttributeCategoryPageInfo(Integer pageNum, Integer pageSize) {
+        return null;
+    }
 }

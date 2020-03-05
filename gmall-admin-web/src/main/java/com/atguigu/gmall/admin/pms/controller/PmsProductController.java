@@ -57,10 +57,7 @@ public class PmsProductController {
     @ApiOperation("查询商品")
     @GetMapping(value = "/list")
     public Object getList(PmsProductQueryParam productQueryParam) {
-        //TODO 查询商品
-
         PageInfoVo pageInfoVo =  productService.productPageInfo(productQueryParam);
-
         return new CommonResult().success(pageInfoVo);
     }
 
