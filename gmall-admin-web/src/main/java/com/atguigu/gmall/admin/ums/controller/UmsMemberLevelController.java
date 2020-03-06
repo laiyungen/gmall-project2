@@ -19,6 +19,7 @@ public class UmsMemberLevelController {
 
     @Reference
     MemberLevelService memberLevelService;
+
     /**
      * 查出所有会员等级
      * @return
