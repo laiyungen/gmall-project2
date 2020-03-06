@@ -56,4 +56,11 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<Admin>().eq("username", userName);
         return adminMapper.selectOne(queryWrapper);
     }
+
+    @Override
+    public Admin saveUserRegister() {
+        return null;
+    }
+
+
 }

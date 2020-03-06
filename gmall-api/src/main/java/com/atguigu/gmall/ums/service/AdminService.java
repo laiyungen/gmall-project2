@@ -13,7 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AdminService extends IService<Admin> {
 
+    // 用户登录逻辑
     Admin login(String username, String password);
 
+    // 用户详情逻辑
     Admin getUserInfo(String userName);
+
+    // 用户注册逻辑
+    Admin saveUserRegister();
 }

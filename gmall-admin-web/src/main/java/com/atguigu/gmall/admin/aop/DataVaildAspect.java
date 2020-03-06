@@ -31,17 +31,15 @@ import org.springframework.validation.BindingResult;
  *         异常执行：   前置通知==>异常通知==>后置通知
  *
  *             环绕通知：4合1；拦截方法的执行
- *
+ *  利用aop完成统一的数据校验，数据校验出错就返回给前端错误提示
  */
-
-//利用aop完成统一的数据校验，数据校验出错就返回给前端错误提示
-    @Slf4j
+@Slf4j
 @Aspect
 @Component
 public class DataVaildAspect {
 
     /**
-     * 目标方法的异常，一般都需要再次抛出去。让别人感知
+     * 目标方法的异常，一般都需要再次抛出去。让别人(全局异常处理器)感知
       * @param point
      * @return
      * @throws Throwable
@@ -50,20 +48,24 @@ public class DataVaildAspect {
     public Object validAround(ProceedingJoinPoint point) throws Throwable {
         Object proceed = null;
 
-            log.debug("校验切面介入工作....");
-            Object[] args = point.getArgs();
-            for (Object obj:args){
-                if(obj instanceof BindingResult){
-                    BindingResult r = (BindingResult) obj;
-                    if(r.getErrorCount()>0){
-                        //框架自动校验检测到错了
-                        return new CommonResult().validateFailed(r);
-                    };
-                }
+        log.debug("数据校验切面介入工作....");
+        // 获取当前调用接口的参数
+        Object[] args = point.getArgs();
+        // 判断当前遍历参数是否为 BindingResul 类型
+        for (Object obj:args){
+            if(obj instanceof BindingResult){
+                // 若为 BindingResul 类型 则强转
+                BindingResult r = (BindingResult) obj;
+                // 获取当前数据校验异常数是否大于 0
+                if(r.getErrorCount()>0){
+                    //框架自动校验检测到错了(向前端返回验证异常和 BindingResul 对象信息)
+                    return new CommonResult().validateFailed(r);
+                };
             }
-            //就是我们反射的  method.invoke();
-            proceed = point.proceed(point.getArgs());
-            log.debug("校验切面将目标方法已经放行....{}",proceed);
+        }
+        //若验证通过则放行，就是我们反射的  method.invoke();
+        proceed = point.proceed(point.getArgs());
+        log.debug("数据校验切面将目标方法已经放行....{}",proceed);
 
         return proceed;
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * 统一处理所有异常，给前端返回500的json
  *
- * 当我们编写环绕通知的时候，目标方法出现的异常一定要再次跑出去
+ * 当我们编写环绕通知的时候，目标方法出现的异常一定要再次抛出去
  */
 @Slf4j
 @RestControllerAdvice

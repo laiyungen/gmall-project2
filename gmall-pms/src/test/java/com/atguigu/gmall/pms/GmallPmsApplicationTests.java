@@ -7,6 +7,8 @@ import com.atguigu.gmall.pms.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 @SpringBootTest
 class GmallPmsApplicationTests {
@@ -15,6 +17,10 @@ class GmallPmsApplicationTests {
     ProductService productService;
     @Autowired
     BrandService brandService;
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
+    @Autowired
+    RedisTemplate<Object,Object> redisTemplate;
 
     @Test
     void contextLoads() {
@@ -29,6 +35,24 @@ class GmallPmsApplicationTests {
 //        }
         Brand brand = brandService.getById(50);
         System.out.println(brand.getName());
+    }
+
+    @Test
+    void stringRedisTemplate(){
+        stringRedisTemplate.opsForValue().set("hello","redis");
+        System.out.println("往 redis 存入数据完成。。。");
+        String str = stringRedisTemplate.opsForValue().get("hello");
+        System.out.println(str);
+    }
+
+    @Test
+    void redisTemplate(){
+        Brand brand = new Brand();
+        brand.setName("测试redis存对象(json)");
+        redisTemplate.opsForValue().set("jsonbran",brand);
+        System.out.println("向redis中存入一个对象");
+        Object bran = redisTemplate.opsForValue().get("jsonbran");
+        System.out.println("从缓存中获取的数据为：" + bran);
     }
 
 }
